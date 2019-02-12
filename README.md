@@ -34,3 +34,20 @@ theme                 - Optional. Adds additional styles to the mobile menu. Val
 icon_width            - Optional. Mobile menu hamburger icon width. Default, taken from stylesheet: "30px".
 icon_height           - Optional. Mobile menu hamburger icon height. Default, taken from stylesheet: "20px".
  ```   
+
+You can have multiple instances of Litomobile on site.
+
+# Browser support
+
+Internet Explorer 10
+Firefox 37
+Chrome 42
+Safari 8
+Opera 29
+Internet Explorer Mobile 11
+iOS Safari 8
+Anroid Chrome 42
+Android Firefox 37
+Opera Mini
+Opera for Android
+Android Internet Browser 7
