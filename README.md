@@ -5,8 +5,9 @@ Small script that takes desktop menu based on UL and creates mobile version of t
 Include litomobile.min.css and litomobile.min.js (from minified directory) in your website.
 
 Then initialise it:
+  ```
+<script>
 
-  <script>
     var litomobile_config = {
       ul_selector: '.desktop_menu_ul_selector',  // Selector for the desktop menu.
       position: 'left',                          // Mobile menu position on screen. Values: left, right, top, bottom.
@@ -15,9 +16,10 @@ Then initialise it:
     }
 
     litomobile(litomobile_config);
-    
-  </script>
-  
+
+</script>
+```   
+
 # Options:
 
      ul_selector - Selector for the desktop menu.
