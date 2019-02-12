@@ -1,0 +1,24 @@
+.litomobile_light.litomobile_container {
+    background: #c2c2c2;
+
+    .litomobile_menu {
+        padding: 0;
+
+        li,
+        li > * {
+            &:hover {
+                background: rgb(100, 100, 100);
+                color: rgb(245, 245, 245);
+            }
+        }
+
+        li {
+            color: #6e6e6e;
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
+    }
+}
