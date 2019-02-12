@@ -1,5 +1,5 @@
 # Litomobile
-Small script that takes desktop menu based on UL and creates mobile version of this menu.
+Lightweight script that takes desktop menu (based on UL) and creates mobile version of this menu.
 
 # How to use
 Include litomobile.min.css and litomobile.min.js (from minified directory) in your website.
