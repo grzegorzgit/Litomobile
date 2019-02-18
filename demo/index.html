@@ -6,8 +6,8 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Litomobile Demo</title>
-  <script src="litomobile.min.js"></script> 
-  <link rel="stylesheet" type="text/css" media="screen" href="litomobile.min.css" />
+  <!-- <script src="litomobile.min.js"></script> 
+  <link rel="stylesheet" type="text/css" media="screen" href="litomobile.min.css" /> -->
   <style>
     body {
       margin: 0;
@@ -55,6 +55,8 @@
       min-width: 200px;
     }
   </style>
+  <script type="text/javascript" src="http://localhost:8080/index_bundle.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="http://localhost:8080/litomobile.css" />
 </head>
 
 <body>
@@ -75,16 +77,19 @@
       </ul> 
     </div>
   </nav>
- 
   <script>
-    var litomobile_config = {
-      ul_selector: '#nav > ul.original_class', // Selector for the desktop menu.
-      position: 'left', // Mobile menu position on screen. Values: left, right, top, bottom.
-      window_size: "780px", // Breakpoint after which activate the mobile menu.
-      theme: "blue", // Optional. Adds additional styles to the mobile menu. Values: blue, red, dark, light.
-    }
+    document.addEventListener("DOMContentLoaded", function(event) { 
+ 
+      var litomobile_config = {
+        ul_selector: '#nav > ul.original_class', // Selector for the desktop menu.
+        position: 'left', // Mobile menu position on screen. Values: left, right, top, bottom.
+        window_size: "780px", // Breakpoint after which activate the mobile menu.
+        theme: "blue", // Optional. Adds additional styles to the mobile menu. Values: blue, red, dark, light.
+      }
+      
+      litomobile(litomobile_config);
+    });
 
-    litomobile(litomobile_config);
   </script>
 
 </body>
