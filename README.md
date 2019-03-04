@@ -11,8 +11,8 @@ Then initialise it:
     var litomobile_config = {
       ul_selector: '.desktop_menu_ul_selector',  // Selector for the desktop menu.
       position: 'left',                          // Mobile menu position on screen. Values: left, right, top, bottom.
-      window_size: "780px",                      // Breakpoint after which activate the mobile menu.
-      theme: "blue"                             // Optional. Adds additional styles to the mobile menu. Values: blue, red, dark, light.
+      window_size: '780px',                      // Breakpoint after which activate the mobile menu.
+      theme: 'blue'                              // Optional. Adds additional styles to the mobile menu. Values: blue, red, dark, light.
     }
 
     litomobile(litomobile_config);
@@ -46,8 +46,8 @@ You can have multiple instances of Litomobile on site.
 - Opera 29
 - Internet Explorer Mobile 11
 - iOS Safari 8
-- Anroid Chrome 42
-- Android Firefox 37
+- Anroid Chrome  
+- Android Firefox 
 - Opera Mini
 - Opera for Android
 - Android Internet Browser 7
