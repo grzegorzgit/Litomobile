@@ -1,17 +1,7 @@
 require('./litomobile.scss');
+import 'babel-polyfill';
 
 function litomobile(config) {
-
-    var is_supported = function(){
-        var div = document.createElement("div"); 
-            div.className="test"; 
-        return (typeof div.classList !== "undefined");
-    }; 
-
-    if (!is_supported()){
-        console.log("This browser doesn't support Litomobile.")
-        return null;
-    } 
 
     var litomobile = {
 
@@ -21,18 +11,18 @@ function litomobile(config) {
 
         desktop_menu: (config.desktop_menu_to_hide) ? document.querySelector(config.desktop_menu_to_hide) : document.querySelector(config.ul_selector),
 
-        is_opera_mini: (navigator.userAgent.indexOf('Opera Mini') > -1), // OperaMini doesn't support transforms, so the animation is done by transition width/height.
+        is_opera_mini: (navigator.userAgent.indexOf('Opera Mini') > -1), // OperaMini doesn't support transforms, so the animation is done by transition width/height. 
 
         closeMenu: function () {
-            this.container.classList.remove("litomobile_open");
-            this.container.classList.add("litomobile_closed");
+            this.container.className = this.container.className.replace("litomobile_open",'');
+            this.container.className += " litomobile_closed";
 
             if (this.is_opera_mini) {
-                this.icon.classList.add("litomobile_icon_closed_om");
-                this.icon.classList.remove("litomobile_icon_open_om");
+                this.icon.className += " litomobile_icon_closed_om";
+                this.icon.className = this.icon.className.replace("litomobile_icon_open_om",''); 
             } else {
-                this.icon.classList.add("litomobile_icon_closed");
-                this.icon.classList.remove("litomobile_icon_open");
+                this.icon.className += " litomobile_icon_closed";
+                this.icon.className = this.icon.className.replace("litomobile_icon_open",'');  
             }
 
             // Opera Mini doesn't support transforms so the animation is done by width & height
@@ -46,15 +36,19 @@ function litomobile(config) {
                 switch (config.position) {
                     case "left":
                         this.container.style.transform = "translateX(-" + this.menu_width + "px)";
+                        this.container.style.msTransform = "translateX(-" + this.menu_width + "px)";
                         break;
                     case "right":
                         this.container.style.transform = "translateX(" + this.menu_width + "px)";
+                        this.container.style.msTransform = "translateX(" + this.menu_width + "px)";
                         break;
                     case "top":
                         this.container.style.transform = "translateY(-" + this.menu_height + "px)";
+                        this.container.style.msTransform = "translateY(-" + this.menu_height + "px)";
                         break;
                     case "bottom":
                         this.container.style.transform = "translateY(" + this.menu_height + "px)";
+                        this.container.style.msTransform  = "translateY(" + this.menu_height + "px)";
                         break;
                 }
             }
@@ -70,16 +64,16 @@ function litomobile(config) {
         animation_duration: config.animation_duration || "0.5s",
 
         openMenu: function () { 
-            this.container.style.transition = this.animation_duration + " " + this.easing; 
-            this.container.classList.remove("litomobile_closed");
-            this.container.classList.add("litomobile_open");
+            this.container.style.transition = this.animation_duration + " " + this.easing;  
+            this.container.className = this.container.className.replace("litomobile_closed",'');  
+            this.container.className += " litomobile_open";
 
             if (this.is_opera_mini) {
-                this.icon.classList.remove("litomobile_icon_closed_om");
-                this.icon.classList.add("litomobile_icon_open_om");
+                this.icon.className = this.icon.className.replace("litomobile_icon_closed_om",'');  
+                this.icon.className += " litomobile_icon_open_om";
             } else {
-                this.icon.classList.remove("litomobile_icon_closed");
-                this.icon.classList.add("litomobile_icon_open");
+                this.icon.className = this.icon.className.replace("litomobile_icon_closed",'');   
+                this.icon.className += " litomobile_icon_open";
             }
 
             // Opera Mini doesn't support transforms so the animation is done by width & height 
@@ -91,9 +85,11 @@ function litomobile(config) {
                 }
             } else {
                 if (config.position == 'left' || config.position == 'right') {
-                    this.container.style.transform = "translateX(0)";
+                    this.container.style.transform = 'translateX(0)';
+                    this.container.style['-ms-transform'] = 'translateX(0)';
                 } else {
-                    this.container.style.transform = "translateY(0)";
+                    this.container.style.transform = 'translateY(0)';
+                    this.container.style['-ms-transform'] = 'translateY(0)';
                 }
             }
         },
@@ -119,20 +115,24 @@ function litomobile(config) {
                     case "left":
                         this.container.style.width = this.menu_width + "px";
                         this.container.style.transform = "translateX(-" + this.menu_width + "px)";
+                        this.container.style['-ms-transform'] = "translateX(-" + this.menu_width + "px)";
                         break;
                     case "right":
                         this.container.style.width = this.menu_width + "px";
                         this.container.style.transform = "translateX(" + this.menu_width + "px)";
+                        this.container.style['-ms-transform'] = "translateX(" + this.menu_width + "px)";
                         break;
                     case "top":
                         this.container.style.height = this.menu_height + "px";
                         this.container.style.width = "100%";
                         this.container.style.transform = "translateY(-" + this.menu_height + "px)";
+                        this.container.style['-ms-transform'] = "translateY(-" + this.menu_height + "px)";
                         break;
                     case "bottom":
                         this.container.style.height = this.menu_height + "px";
                         this.container.style.width = "100%";
                         this.container.style.transform = "translateY(" + this.menu_height + "px)";
+                        this.container.style['-ms-transform'] = "translateY(" + this.menu_height + "px)";
                         break;
                 }
             }
@@ -167,7 +167,7 @@ function litomobile(config) {
 
             // Open or close menu on icon click.
             icon.addEventListener('click', function () {
-                if (tmp_this.container.classList.contains('litomobile_open')) {
+                if (tmp_this.container.className.includes('litomobile_open')) {
                     tmp_this.closeMenu();
                 } else {
                     tmp_this.openMenu();
@@ -176,10 +176,10 @@ function litomobile(config) {
 
             // Close menu on click outside the menu.
             document.addEventListener("click", function (evt) {
-                if (tmp_this.container.classList.contains('litomobile_open') &&
-                    !evt.target.classList.contains('litomobile_icon')
+                if (tmp_this.container.className.includes('litomobile_open') &&
+                    !evt.target.className.includes('litomobile_icon')
                 ) {
-                    targetElement = evt.target;
+                    var targetElement = evt.target;
                     var icon_middle_bar = icon.querySelector('div');
                     var icon_middle_bar2 = icon.querySelector('div:nth-child(2)');
                     do {
@@ -240,16 +240,16 @@ function litomobile(config) {
         closeSubmenu: function (element) {
             element.style.height = "0";
 
-            // Remove class if the closeSubmenu() is invoked not from processSubmenu() but from whole menu closing.
-            element.parentElement.classList.remove("submenu_opened");
+            // Remove class if the closeSubmenu() is invoked not from processSubmenu() but from whole menu closing. 
+            element.parentElement.className = element.parentElement.className.replace("submenu_opened", '');
         },
 
         processSubmenu: function (element) { 
-            if (element.classList.contains("submenu_opened")) {
+            if (element.className.includes("submenu_opened")) {
                 this.closeSubmenu(element.querySelector("ul"));
-                element.classList.remove("submenu_opened");
+                element.className = element.className.replace("submenu_opened", '');
             } else {
-                element.classList.add("submenu_opened");
+                element.className += " submenu_opened";
                 this.openSubmenu(element.querySelector("ul"));
             }
         },
@@ -384,28 +384,25 @@ function litomobile(config) {
         }
     };
     
-    if(is_supported){ 
-        // Show / hide when window is resized to breakpoint.
-        window.addEventListener("resize", function () {
-            if (litomobile.getWindowWidth() <= parseFloat(config.window_size)) {
-                if (litomobile.ul_menu) {
-                    litomobile.show();
-                } else {
-                    litomobile.init();
-                }
-            } else if (litomobile.ul_menu) {
-                litomobile.hide();
-                litomobile.closeMenu();
+    // Show / hide when window is resized to breakpoint.
+    window.addEventListener("resize", function () {
+        if (litomobile.getWindowWidth() <= parseFloat(config.window_size)) {
+            if (litomobile.ul_menu) {
+                litomobile.show();
+            } else {
+                litomobile.init();
             }
-        })
-    }
+        } else if (litomobile.ul_menu) {
+            litomobile.hide();
+            litomobile.closeMenu();
+        }
+    }) 
 
     // Check if window size to initialise mobile menu.
-    if(is_supported){ 
-        if (litomobile.getWindowWidth() <= parseFloat(config.window_size)) {
-            litomobile.init();
-        }
+    if (litomobile.getWindowWidth() <= parseFloat(config.window_size)) {
+        litomobile.init();
     }
+
     
 }
 window.litomobile = litomobile;
