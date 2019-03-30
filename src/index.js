@@ -243,7 +243,7 @@ function litomobile(config) {
             element.parentElement.className = element.parentElement.className.replace("submenu_opened", '');
         },
 
-        processSubmenu(element) { 
+        processSubmenu(element) {
             if (element.className.indexOf("submenu_opened") > -1) {
                 this.closeSubmenu(element.querySelector("ul"));
                 element.className = element.className.replace("submenu_opened", '');
