@@ -12,7 +12,7 @@ function litomobile(config) {
 
         is_opera_mini: (navigator.userAgent.indexOf('Opera Mini') > -1), // OperaMini doesn't support transforms, so the animation is done by transition width/height. 
 
-        closeMenu: function () {
+        closeMenu(){
             this.container.className = this.container.className.replace("litomobile_open",'');
             this.container.className += " litomobile_closed";
 
@@ -62,7 +62,7 @@ function litomobile(config) {
         easing: config.animation_ease || "linear",
         animation_duration: config.animation_duration || "0.5s",
 
-        openMenu: function () { 
+        openMenu(){ 
             this.container.style.transition = this.animation_duration + " " + this.easing;  
             this.container.className = this.container.className.replace("litomobile_closed",'');  
             this.container.className += " litomobile_open";
@@ -97,7 +97,7 @@ function litomobile(config) {
 
         menu_height: null, // Set after set_poisition().
 
-        setPosition: function () {
+        setPosition(){
             // If there is margin added to ul in stylesheet than it must be added to container width.
             var style = this.ul_menu.currentStyle || window.getComputedStyle(this.ul_menu);
 
@@ -141,7 +141,7 @@ function litomobile(config) {
 
         icon: null, // Icon object, set after makeIcon().
 
-        makeIcon: function () {
+        makeIcon(){
             var icon = document.createElement("div");
             icon.className = "litomobile_icon";
             var middle_bar = document.createElement("div");
@@ -228,7 +228,7 @@ function litomobile(config) {
             this.icon = icon;
         },
 
-        openSubmenu: function (element) {
+        openSubmenu(element) {
             
             // Set the height based on its calculated height, put in data-height attr.
             // IE 10 supports only slow getAttribute()
@@ -236,14 +236,14 @@ function litomobile(config) {
              
         },
 
-        closeSubmenu: function (element) {
+        closeSubmenu(element) {
             element.style.height = "0";
 
             // Remove class if the closeSubmenu() is invoked not from processSubmenu() but from whole menu closing. 
             element.parentElement.className = element.parentElement.className.replace("submenu_opened", '');
         },
 
-        processSubmenu: function (element) { 
+        processSubmenu(element) { 
             if (element.className.indexOf("submenu_opened") > -1) {
                 this.closeSubmenu(element.querySelector("ul"));
                 element.className = element.className.replace("submenu_opened", '');
@@ -253,7 +253,7 @@ function litomobile(config) {
             }
         },
 
-        addClickListener: function () {
+        addClickListener(){
             var tmp_this = this;
             var lis = this.container.querySelectorAll(".litomobile_menu > li");
 
@@ -277,7 +277,7 @@ function litomobile(config) {
             }
         },
 
-        mobileUl: function () {
+        mobileUl(){
             var lis = document.querySelectorAll(config.ul_selector + " > li");
             var litomobile_menu = document.createElement("ul");
             litomobile_menu.className = "litomobile_menu";
@@ -286,7 +286,7 @@ function litomobile(config) {
             (config.set_id) ? litomobile_menu.id = config.set_id : "";
 
             // Pupulate new menu with li copied from original
-            for (var i = 0; i < lis.length; i++) {
+            for (let i = 0; i < lis.length; i++) {
                 var li_element = lis[i].cloneNode(true);
                 litomobile_menu.appendChild(li_element);
             }
@@ -295,7 +295,7 @@ function litomobile(config) {
             return litomobile_menu;
         },
 
-        makeContainer: function () {
+        makeContainer(){
             // Create container div for the menu.
             var container = document.createElement("div");
             container.appendChild(this.mobileUl());
@@ -328,25 +328,25 @@ function litomobile(config) {
             this.emitEvent();
         },
 
-        init: function () { 
+        init(){ 
             this.makeContainer();
             this.makeIcon();
             this.desktop_menu.style.display = "none"; 
         },
 
-        show: function () {
+        show(){
             this.container.style.display = "block";
             this.icon.style.display = "block";
             this.desktop_menu.style.display = "none";
         },
 
-        hide: function () {
+        hide(){
             this.container.style.display = "none";
             this.icon.style.display = "none";
             this.desktop_menu.style.display = null;
         },
 
-        getWindowWidth: function () {
+        getWindowWidth(){
             var width;
             if (window.innerHeight !== undefined) width = window.innerWidth; // most browsers
             else { // IE varieties
@@ -356,7 +356,7 @@ function litomobile(config) {
             return width;
         },
 
-        getHeightWithMargins: function (element) {
+        getHeightWithMargins(element) {
             var style = element.currentStyle || window.getComputedStyle(element);
             var height = null;
 
@@ -370,7 +370,7 @@ function litomobile(config) {
         },
 
         // Emits event when mobile menu is created.
-        emitEvent: function(){
+        emitEvent(){
             
             var event;
             if (typeof(Event) === 'function') {
