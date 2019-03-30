@@ -1,5 +1,4 @@
 require('./litomobile.scss');
-import 'babel-polyfill';
 
 function litomobile(config) {
 
@@ -167,7 +166,7 @@ function litomobile(config) {
 
             // Open or close menu on icon click.
             icon.addEventListener('click', function () {
-                if (tmp_this.container.className.includes('litomobile_open')) {
+                if (tmp_this.container.className.indexOf('litomobile_open') > -1) {
                     tmp_this.closeMenu();
                 } else {
                     tmp_this.openMenu();
@@ -176,8 +175,8 @@ function litomobile(config) {
 
             // Close menu on click outside the menu.
             document.addEventListener("click", function (evt) {
-                if (tmp_this.container.className.includes('litomobile_open') &&
-                    !evt.target.className.includes('litomobile_icon')
+                if (tmp_this.container.className.indexOf('litomobile_open') > -1 &&
+                    evt.target.className.indexOf('litomobile_icon') ==-1
                 ) {
                     var targetElement = evt.target;
                     var icon_middle_bar = icon.querySelector('div');
@@ -245,7 +244,7 @@ function litomobile(config) {
         },
 
         processSubmenu: function (element) { 
-            if (element.className.includes("submenu_opened")) {
+            if (element.className.indexOf("submenu_opened") > -1) {
                 this.closeSubmenu(element.querySelector("ul"));
                 element.className = element.className.replace("submenu_opened", '');
             } else {
