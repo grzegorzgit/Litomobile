@@ -36,6 +36,7 @@ icon_height           - Optional. Mobile menu hamburger icon height. Default, ta
  ```   
 
 You can have multiple instances of Litomobile on site.
+After the menu is created the event "litomobileCreated" is emited on window object.
 
 # Browser support
 
