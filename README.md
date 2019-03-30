@@ -39,15 +39,15 @@ You can have multiple instances of Litomobile on site.
 
 # Browser support
 
-- Internet Explorer 10
+- Internet Explorer 9
 - Firefox 37
 - Chrome 42
 - Safari 8
 - Opera 29
 - Internet Explorer Mobile 11
-- iOS Safari 8
+- iOS Safari
 - Anroid Chrome  
 - Android Firefox 
 - Opera Mini
 - Opera for Android
-- Android Internet Browser 7
+- Android Internet Browser
