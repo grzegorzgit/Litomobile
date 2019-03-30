@@ -2,7 +2,7 @@
 Lightweight script that takes desktop menu (based on UL) and creates its mobile version.
 
 # How to use
-Include litomobile.css and litomobile.js (from dist) to your website.
+Include litomobile.css and litomobile.js (from dist directory) to your website.
 
 Then initialise it:
   ```
